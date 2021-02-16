@@ -1,9 +1,10 @@
-
 #!/bin/bash -x
-coutHeadWin=0
+countHeadWin=0
 countTailsWin=0
-for (( i=1; i<=20; i++ ))
+for (( i=1; i<=100; i++ ))
 do
+	if (( ($countHeadWin<21)&&($countTailsWin<21) ))
+	then
 	flip=$((RANDOM%2))
 
 	if (( $flip==1 ))
@@ -14,6 +15,11 @@ do
 		echo "tails"
 		((countTailsWin++))
 	fi
+	fi
 done
-echo "head win count out of 20 is=" $countHeadWin
-echo "tails win count out of 20 is=" $countTailsWin
+if (($countHeadWin==21))
+then
+	echo "head win first by= $countHeadWin :: $countTailsWin"
+else 
+	echo "tails win first by= $countTailsWin :: $countHeadWin"
+fi
